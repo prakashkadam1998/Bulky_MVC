@@ -1,9 +1,14 @@
+using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
+//Server=(localdb)\\SQLServerDB;Integrated Security=true;
+//"Server=.;Database=Bulky;Trusted_Connection=True;TrustServerCertificate=True"
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
