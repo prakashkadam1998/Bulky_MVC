@@ -143,10 +143,10 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                     Text = i,
                     Value = i
                 }),
-                //CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem {
-                //    Text = i.Name,
-                //    Value = i.Id.ToString()
-                //})
+                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem {
+                    Text = i.Name,
+                   Value = i.Id.ToString()
+                })
             };
 
             ReturnUrl = returnUrl;
@@ -171,7 +171,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
                 user.PhoneNumber = Input.PhoneNumber;
 
                 if (Input.Role == SD.Role_Company) {
-                   // user.CompanyId=Input.CompanyId;
+                    user.CompanyId=Input.CompanyId;
                 }
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
